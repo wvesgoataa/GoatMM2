@@ -1,9 +1,8 @@
 GOATCFG = { Icon = "lucide:crown", Background = nil }
-
-if _G.FVLV2Cleanup then
-	_G.__FVLReloading = true
-	pcall(_G.FVLV2Cleanup)
-	_G.__FVLReloading = nil
+if _G.GOATCleanup then
+	_G.__GOATReloading = true
+	pcall(_G.GOATCleanup)
+	_G.__GOATReloading = nil
 end
 
 do
@@ -48,7 +47,7 @@ do
 		local color7 = Color3.fromRGB(245, 179, 1)
 		local hui = gethui and gethui() or game:GetService("CoreGui")
 		local screenGui = Instance.new("ScreenGui")
-		screenGui.Name = "FVLExecutorWarning"
+		screenGui.Name = "GOATExecutorWarning"
 		screenGui.IgnoreGuiInset = true
 		screenGui.ResetOnSpawn = false
 		screenGui.DisplayOrder = 2000000
@@ -178,24 +177,24 @@ Please use a better executor next time.]]
 	end
 end
 
-if _G.FVLV2 then
-	local fvlV2 = _G.FVLV2
+if _G.GOAT then
+	local goatUI = _G.GOAT
 	local flag7 = false
 
 	pcall(function()
-		flag7 = not fvlV2.Destroyed and fvlV2.UIElements and fvlV2.UIElements.Main and fvlV2.UIElements.Main.Parent ~= nil
+		flag7 = not goatUI.Destroyed and goatUI.UIElements and goatUI.UIElements.Main and goatUI.UIElements.Main.Parent ~= nil
 	end)
 
 	if flag7 then
 		pcall(function()
-			fvlV2:Destroy()
+			goatUI:Destroy()
 		end)
 
 		local now = os.clock()
 
 		while true do
 			task.wait(0.1)
-			if not (fvlV2.Destroyed or os.clock() - now > 3) then
+			if not (goatUI.Destroyed or os.clock() - now > 3) then
 				continue
 			end
 			break
@@ -204,17 +203,17 @@ if _G.FVLV2 then
 		task.wait(0.7)
 	end
 
-	_G.FVLV2 = nil
+	_G.GOAT = nil
 end
 
-_G.FVLV2Cleanup = nil
+_G.GOATCleanup = nil
 
 pcall(function()
 	local func3 = ipairs
 	local CoreGui_ = game:GetService("CoreGui")
 
 	for _, child in func3(CoreGui_:GetChildren()) do
-		if child.Name == "FVLESP" or child.Name:match("^FVL.+Button$") then
+		if child.Name == "GOATESP" or child.Name:match("^GOAT.+Button$") then
 			child:Destroy()
 		end
 	end
@@ -241,8 +240,8 @@ do
 		end
 	end
 
-	if isfile and readfile and isfile("FVLV2/windui.lua") then
-		local ok, result = pcall(readfile, "FVLV2/windui.lua")
+	if isfile and readfile and isfile("GOAT/windui.lua") then
+		local ok, result = pcall(readfile, "GOAT/windui.lua")
 
 		if ok and type(result) == "string" and #result > 100000 then
 			response = result
@@ -250,34 +249,34 @@ do
 	end
 
 	local flag8 = response ~= nil
-	response = response or game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua")
+	response = response or game:HttpGet("https://raw.githubusercontent.com/wvesgoataa/GoatMM2/refs/heads/main/ui.lua")
 	local chunk = loadstring(response)
 
 	if not chunk and flag8 then
-		response = game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua")
+		response = game:HttpGet("https://raw.githubusercontent.com/wvesgoataa/GoatMM2/refs/heads/main/ui.lua")
 		chunk = loadstring(response)
 		flag8 = false
 	end
 
 	if not flag8 and writefile then
 		pcall(function()
-			func4("FVLV2")
-			writefile("FVLV2/windui.lua", response)
+			func4("GOAT")
+			writefile("GOAT/windui.lua", response)
 		end)
 	end
 
-	if writefile and isfile and not isfile("FVLV2/icons-main.lua") then
+	if writefile and isfile and not isfile("GOAT/icons-main.lua") then
 		pcall(function()
 			local str2, flag9 = game:HttpGet("https://raw.githubusercontent.com/Footagesus/Icons/main/Main-v2.lua"):gsub("return game:HttpGet%(url%)", function()
 				return [[do
-    local _p = "FVLV2/icons/" .. url:gsub("%W", "_") .. ".txt"
+    local _p = "GOAT/icons/" .. url:gsub("%W", "_") .. ".txt"
     if isfile and readfile and isfile(_p) then
         local _o, _d = pcall(readfile, _p)
         if _o and type(_d) == "string" and #_d > 0 then return _d end
     end
     local _d = game:HttpGet(url)
     pcall(function()
-        if makefolder and isfolder and not isfolder("FVLV2/icons") then makefolder("FVLV2/icons") end
+        if makefolder and isfolder and not isfolder("GOAT/icons") then makefolder("GOAT/icons") end
         writefile(_p, _d)
     end)
     return _d
@@ -285,14 +284,14 @@ end]]
 			end)
 
 			if flag9 > 0 and loadstring(str2) then
-				func4("FVLV2")
-				writefile("FVLV2/icons-main.lua", str2)
+				func4("GOAT")
+				writefile("GOAT/icons-main.lua", str2)
 			end
 		end)
 	end
 
-	if isfile and isfile("FVLV2/icons-main.lua") then
-		local str3, flag10 = response:gsub("game%.HttpGet and game:HttpGet%(%w+%)or %w+:GetAsync%(%w+%)", "readfile(\"" .. "FVLV2/icons-main.lua\")")
+	if isfile and isfile("GOAT/icons-main.lua") then
+		local str3, flag10 = response:gsub("game%.HttpGet and game:HttpGet%(%w+%)or %w+:GetAsync%(%w+%)", "readfile(\"" .. "GOAT/icons-main.lua\")")
 
 		if flag10 > 0 then
 			chunk = loadstring(str3) or chunk
@@ -342,7 +341,7 @@ do
 		Title = "GOAT 3.0",
 		Icon = GOATCFG.Icon,
 		Author = "Murder Mystery 2",
-		Folder = "FVLV2",
+		Folder = "GOAT",
 		Background = GOATCFG.Background,
 		Size = UDim2.fromOffset(math.clamp((workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize or Vector2.new(1920, 1080)).X - 24, 320, 850), math.clamp((workspace.CurrentCamera and workspace.CurrentCamera.ViewportSize or Vector2.new(1920, 1080)).Y - 24, 240, 560)),
 	}
@@ -474,7 +473,7 @@ task.spawn(function()
 			local now = os.clock()
 			local n3 = 0
 
-			while _G.FVLV2 == obj3 and n3 < 40 do
+			while _G.GOAT == obj3 and n3 < 40 do
 				for _, item4 in ipairs(list1) do
 					if item4.lbl.Parent and item4.icon.Parent and item4.icon.AbsoluteSize.X > 0 and item4.lbl.AbsoluteSize.X > 0 and item4.lbl.AbsolutePosition.X < item4.icon.AbsolutePosition.X + item4.icon.AbsoluteSize.X then
 						n3 += 1
@@ -558,7 +557,7 @@ task.spawn(function()
 		break
 	end
 
-	if not value7 or value7:FindFirstChild("FVLTitleSheen") then
+	if not value7 or value7:FindFirstChild("GOATTitleSheen") then
 		return
 	end
 	local uiGradient = value7:FindFirstChildWhichIsA("UIGradient")
@@ -568,7 +567,7 @@ task.spawn(function()
 	end
 
 	local uiGradient2 = Instance.new("UIGradient")
-	uiGradient2.Name = "FVLTitleSheen"
+	uiGradient2.Name = "GOATTitleSheen"
 	uiGradient2.Rotation = 12
 	local colorSequence = ColorSequence.new
 	local value8 = ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 213, 74))
@@ -587,7 +586,7 @@ task.spawn(function()
 	uiGradient2.Offset = Vector2.new(-0.55000001192092896, 0)
 	uiGradient2.Parent = value7
 	local uiStroke = Instance.new("UIStroke")
-	uiStroke.Name = "FVLTitleGlow"
+	uiStroke.Name = "GOATTitleGlow"
 	uiStroke.Color = Color3.fromRGB(255, 226, 140)
 	uiStroke.Thickness = 1.4
 	uiStroke.Transparency = 0.82
@@ -610,7 +609,7 @@ obj3:EditOpenButton({
 	Draggable = true,
 })
 
-_G.FVLV2 = obj3
+_G.GOAT = obj3
 local list2
 
 list2 = {
@@ -635,8 +634,8 @@ list2 = {
 	hudPos = {},
 	cfgSnapshot = nil,
 	cfgWiped = false,
-	hudDir = "WindUI/FVLV2/hud",
-	hudFile = "WindUI/FVLV2/hud/autosave.json",
+	hudDir = "WindUI/GOAT/hud",
+	hudFile = "WindUI/GOAT/hud/autosave.json",
 }
 
 pcall(function()
@@ -669,22 +668,22 @@ list2.playSfx = function(name)
 
 	pcall(function()
 		local SoundService = game:GetService("SoundService")
-		local fvlSFX = SoundService:FindFirstChild("FVLSFX")
+		local goatSFX = SoundService:FindFirstChild("GOATSFX")
 
-		if not fvlSFX then
-			fvlSFX = Instance.new("Folder")
-			fvlSFX.Name = "FVLSFX"
-			fvlSFX.Parent = SoundService
+		if not goatSFX then
+			goatSFX = Instance.new("Folder")
+			goatSFX.Name = "GOATSFX"
+			goatSFX.Parent = SoundService
 		end
 
 		local sound = list2.sfx[name]
 
 		if not sound or not sound.Parent then
-			sound = fvlSFX:FindFirstChild(name) or Instance.new("Sound")
+			sound = goatSFX:FindFirstChild(name) or Instance.new("Sound")
 			sound.Name = name
 			sound.SoundId = "rbxassetid://" .. str4
 			sound.Volume = list2.sfxVol[name] or 0.5
-			sound.Parent = fvlSFX
+			sound.Parent = goatSFX
 			list2.sfx[name] = sound
 		end
 
@@ -793,11 +792,11 @@ task.spawn(function()
 				break
 			end
 
-			if not imageLabel or imageLabel:FindFirstChild("FVLToastRamp") then
+			if not imageLabel or imageLabel:FindFirstChild("GOATToastRamp") then
 				return
 			end
 			local uiGradient = Instance.new("UIGradient")
-			uiGradient.Name = "FVLToastRamp"
+			uiGradient.Name = "GOATToastRamp"
 			uiGradient.Rotation = 45
 
 			uiGradient.Color = ColorSequence.new({
@@ -1098,14 +1097,14 @@ list2.card = function(flag15)
 
 	pcall(function()
 		local hui = gethui and gethui() or CoreGui
-		local fvlCard = hui:FindFirstChild("FVLCard")
+		local goatCard = hui:FindFirstChild("GOATCard")
 
-		if fvlCard then
-			fvlCard:Destroy()
+		if goatCard then
+			goatCard:Destroy()
 		end
 
 		local screenGui = Instance.new("ScreenGui")
-		screenGui.Name = "FVLCard"
+		screenGui.Name = "GOATCard"
 		screenGui.IgnoreGuiInset = true
 		screenGui.ResetOnSpawn = false
 		screenGui.DisplayOrder = 99999
@@ -1394,7 +1393,7 @@ list2.card = function(flag15)
 end
 
 list2.farewell = function()
-	if _G.__FVLReloading then
+	if _G.__GOATReloading then
 		return
 	end
 
@@ -1459,20 +1458,20 @@ pcall(function()
 		return
 	end
 
-	if isfile("WindUI/FVLV2/config/fvl_hud.json") then
+	if isfile("WindUI/GOAT/config/goat_hud.json") then
 		if writefile and not isfile(list2.hudFile) then
-			writefile(list2.hudFile, readfile("WindUI/FVLV2/config/fvl_hud.json"))
+			writefile(list2.hudFile, readfile("WindUI/GOAT/config/goat_hud.json"))
 		end
 
-		delfile("WindUI/FVLV2/config/fvl_hud.json")
+		delfile("WindUI/GOAT/config/goat_hud.json")
 	end
 
 	if listfiles then
-		for _, listfile in ipairs(listfiles("WindUI/FVLV2/config")) do
+		for _, listfile in ipairs(listfiles("WindUI/GOAT/config")) do
 			local match = tostring(listfile):match("[^/\\]+$") or ""
 
-			if match:match("^fvl_hud") then
-				local match2 = match:match("^fvl_hud_(.+)%.json$")
+			if match:match("^goat_hud") then
+				local match2 = match:match("^goat_hud_(.+)%.json$")
 
 				if match2 and writefile then
 					pcall(function()
@@ -1545,7 +1544,7 @@ do
 	index.new = function()
 		local obj = setmetatable({}, index)
 		obj.ScreenGui = Instance.new("ScreenGui")
-		obj.ScreenGui.Name = "FVLESP"
+		obj.ScreenGui.Name = "GOATESP"
 		obj.ScreenGui.IgnoreGuiInset = true
 		obj.ScreenGui.ResetOnSpawn = false
 		obj.ScreenGui.Parent = CoreGui
@@ -1813,7 +1812,7 @@ do
 					GroupName = "players",
 					FillTransparency = n,
 					OutlineTransparency = n2,
-					Label = flag20 and player.DisplayName or nil,
+					Label = flag20 and player.Name or nil,
 					LabelAdornee = player.Character:FindFirstChild("Head"),
 					LabelMaxDistance = 300,
 				})
@@ -1996,14 +1995,14 @@ do
 			return nil
 		end
 		local tbl17 = { line = Instance.new("Frame") }
-		tbl17.line.Name = "FVLTracer"
+		tbl17.line.Name = "GOATTracer"
 		tbl17.line.AnchorPoint = Vector2.new(0.5, 0.5)
 		tbl17.line.BorderSizePixel = 0
 		tbl17.line.Visible = false
 		tbl17.line.ZIndex = 2
 		tbl17.line.Parent = screenGui
 		tbl17.lbl = Instance.new("TextLabel")
-		tbl17.lbl.Name = "FVLDist"
+		tbl17.lbl.Name = "GOATDist"
 		tbl17.lbl.AnchorPoint = Vector2.new(0.5, 0)
 		tbl17.lbl.BackgroundTransparency = 1
 		tbl17.lbl.Size = UDim2.fromOffset(90, 14)
@@ -2017,7 +2016,7 @@ do
 		uiStroke.Color = Color3.new(0, 0, 0)
 		uiStroke.Parent = tbl17.lbl
 		tbl17.arw = Instance.new("TextLabel")
-		tbl17.arw.Name = "FVLArrow"
+		tbl17.arw.Name = "GOATArrow"
 		tbl17.arw.AnchorPoint = Vector2.new(0.5, 0.5)
 		tbl17.arw.BackgroundTransparency = 1
 		tbl17.arw.Size = UDim2.fromOffset(28, 28)
@@ -2229,6 +2228,10 @@ do
 			return
 		end
 
+		if list2.friendBlocked(player2) then
+			return
+		end
+
 		if not player2.Character:FindFirstChildOfClass("Humanoid") then
 			return
 		end
@@ -2345,7 +2348,7 @@ do
 
 		Workspace.FallenPartsDestroyHeight = (0/0)
 		local bodyVelocity = Instance.new("BodyVelocity")
-		bodyVelocity.Name = "SkidFlingBV"
+		bodyVelocity.Name = "GoatFlingBV"
 		bodyVelocity.Parent = rootPart
 		bodyVelocity.Velocity = Vector3.zero
 		bodyVelocity.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
@@ -2786,7 +2789,7 @@ list2.pointerHeld = function()
 end
 
 task.spawn(function()
-	while _G.FVLV2 == obj3 do
+	while _G.GOAT == obj3 do
 		task.wait(0.25)
 
 		if obj2.CurrentInput ~= nil and not list2.pointerHeld() then
@@ -3031,60 +3034,136 @@ do
 		end
 	end
 
+	list2.af = { stepped = nil, charConn = nil, was = {}, cache = {}, safe = nil, lastNote = 0 }
+
+	local function afTune(character, enabled)
+		local hum = character and character:FindFirstChildOfClass("Humanoid")
+
+		if hum then
+			pcall(function()
+				hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, enabled)
+				hum:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, enabled)
+			end)
+		end
+	end
+
 	func45 = function()
 		if connection4 then
 			return
 		end
 
-		local lastAF = 0
-		connection4 = RunService.Heartbeat:Connect(function()
-			if not flag44 then
+		local af = list2.af
+		af.safe = nil
+		afTune(localPlayer.Character, false)
+
+		af.charConn = localPlayer.CharacterAdded:Connect(function(character)
+			af.safe = nil
+			character:WaitForChild("Humanoid", 5)
+
+			if flag44 then
+				afTune(character, false)
+			end
+		end)
+
+		af.stepped = RunService.Stepped:Connect(function()
+			if not flag44 or flag33 then
 				return
 			end
-			local tAF = os.clock()
-			if tAF - lastAF < 0.05 then
-				return
-			end
-			lastAF = tAF
 
-			pcall(function()
-				local character = localPlayer.Character
-				if not character then
-					return
-				end
-				local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
-				if not humanoidRootPart then
-					return
-				end
+			local now = os.clock()
 
-				for _, player in ipairs(Players:GetPlayers()) do
-					if player ~= localPlayer and player.Character then
-						for _, descendant in ipairs(player.Character:GetDescendants()) do
-							if descendant:IsA("BasePart") and not descendant.Anchored and descendant.Velocity.Magnitude > 200 then
-								if (descendant.Position - humanoidRootPart.Position).Magnitude < 30 then
-									descendant.Velocity = Vector3.zero
-									descendant.RotVelocity = Vector3.zero
-									descendant.Anchored = true
+			for _, player in ipairs(Players:GetPlayers()) do
+				if player ~= localPlayer then
+					local char = player.Character
+					local entry = af.cache[player]
 
-									task.delay(0.3, function()
-										if descendant and descendant.Parent then
-											descendant.Anchored = false
-										end
-									end)
-								end
+					if char and (not entry or entry.char ~= char or now - entry.at > 1) then
+						local parts = {}
+
+						for _, d in ipairs(char:GetDescendants()) do
+							if d:IsA("BasePart") then
+								parts[#parts + 1] = d
+							end
+						end
+
+						entry = { char = char, at = now, parts = parts }
+						af.cache[player] = entry
+					end
+
+					if char and entry then
+						for _, part in ipairs(entry.parts) do
+							if part.CanCollide then
+								af.was[part] = true
+								part.CanCollide = false
 							end
 						end
 					end
 				end
-			end)
+			end
+		end)
+
+		connection4 = RunService.Heartbeat:Connect(function()
+			if not flag44 then
+				return
+			end
+
+			local character = localPlayer.Character
+			local hrp = character and character:FindFirstChild("HumanoidRootPart")
+			local hum = character and character:FindFirstChildOfClass("Humanoid")
+
+			if not hrp or not hum or hum.Health <= 0 or flag33 then
+				af.safe = nil
+				return
+			end
+
+			local limit = math.max(250, (flag42 and n or 0) * 1.5 + 60)
+			local lin = hrp.AssemblyLinearVelocity.Magnitude
+			local ang = hrp.AssemblyAngularVelocity.Magnitude
+
+			if lin > limit or (ang > 100 and not flag42) then
+				for _, part in ipairs(character:GetChildren()) do
+					if part:IsA("BasePart") then
+						part.AssemblyLinearVelocity = Vector3.zero
+						part.AssemblyAngularVelocity = Vector3.zero
+					end
+				end
+
+				if af.safe and (hrp.Position - af.safe.Position).Magnitude > 6 then
+					hrp.CFrame = af.safe
+				end
+
+				if os.clock() - af.lastNote > 2 then
+					af.lastNote = os.clock()
+					obj2:Notify({ Title = "Anti-Fling", Content = "Blocked a fling.", Duration = 1.5, Icon = "shield" })
+				end
+			else
+				af.safe = hrp.CFrame
+			end
 		end)
 	end
 
 	func46 = function()
+		local af = list2.af
+
 		if connection4 then
 			connection4:Disconnect()
 			connection4 = nil
 		end
+
+		if af.stepped then
+			af.stepped:Disconnect()
+			af.stepped = nil
+		end
+
+		if af.charConn then
+			af.charConn:Disconnect()
+			af.charConn = nil
+		end
+
+		afTune(localPlayer.Character, true)
+		list2.reclip(af.was)
+		af.cache = {}
+		af.safe = nil
 	end
 end
 
@@ -3282,12 +3361,12 @@ do
 		if not upperTorso then
 			return
 		end
-		local odhAutoFarmBodyGyro = upperTorso:FindFirstChild("ODH Auto Farm BodyGyro")
-		local odhAutoFarmBodyVelocity = upperTorso:FindFirstChild("ODH Auto Farm BodyVelocity")
+		local goatAutoFarmBodyGyro = upperTorso:FindFirstChild("GOAT Auto Farm BodyGyro")
+		local goatAutoFarmBodyVelocity = upperTorso:FindFirstChild("GOAT Auto Farm BodyVelocity")
 
 		if param25 then
-			odhAutoFarmBodyGyro = odhAutoFarmBodyGyro or odhAutoFarmBodyVelocity
-			if odhAutoFarmBodyGyro then
+			goatAutoFarmBodyGyro = goatAutoFarmBodyGyro or goatAutoFarmBodyVelocity
+			if goatAutoFarmBodyGyro then
 				return
 			end
 			local flag55 = func47(localPlayer)
@@ -3302,13 +3381,13 @@ do
 			local cFrame2 = CFrame.new(cFrame.X, cFrame.Y, cFrame.Z) * CFrame.Angles(1.5707963267948966, 0, 1.5707963267948966)
 			func58(true)
 			local bodyGyro = Instance.new("BodyGyro")
-			bodyGyro.Name = "ODH Auto Farm BodyGyro"
+			bodyGyro.Name = "GOAT Auto Farm BodyGyro"
 			bodyGyro.Parent = upperTorso
 			bodyGyro.P = 90000
 			bodyGyro.MaxTorque = Vector3.new(9e9, 9e9, 9e9)
 			bodyGyro.CFrame = cFrame2
 			local bodyVelocity = Instance.new("BodyVelocity")
-			bodyVelocity.Name = "ODH Auto Farm BodyVelocity"
+			bodyVelocity.Name = "GOAT Auto Farm BodyVelocity"
 			bodyVelocity.Parent = upperTorso
 			bodyVelocity.Velocity = Vector3.zero
 			bodyVelocity.MaxForce = Vector3.new(9e9, 9e9, 9e9)
@@ -3318,12 +3397,12 @@ do
 			local humanoid = localPlayer.Character and localPlayer.Character:FindFirstChild("Humanoid")
 
 			if humanoid then
-				if odhAutoFarmBodyGyro then
-					odhAutoFarmBodyGyro:Destroy()
+				if goatAutoFarmBodyGyro then
+					goatAutoFarmBodyGyro:Destroy()
 				end
 
-				if odhAutoFarmBodyVelocity then
-					odhAutoFarmBodyVelocity:Destroy()
+				if goatAutoFarmBodyVelocity then
+					goatAutoFarmBodyVelocity:Destroy()
 				end
 
 				humanoid.PlatformStand = false
@@ -3695,7 +3774,7 @@ do
 				local descendants, value72 = character:GetDescendants()
 
 				for _, value73 in value71, descendants, value72 do
-					if value73.Name == "ODH Auto Farm BodyGyro" or value73.Name == "ODH Auto Farm BodyVelocity" then
+					if value73.Name == "GOAT Auto Farm BodyGyro" or value73.Name == "GOAT Auto Farm BodyVelocity" then
 						value73:Destroy()
 						flag59 = true
 					end
@@ -3949,12 +4028,12 @@ do
 		list2.boxOn[param32] = false
 	end
 
-	_G.__FVLBuild = "gatestyle-38"
-	_G.__FVLGen = (_G.__FVLGen or 0) + 1
-	list2.gen = _G.__FVLGen
+	_G.__GOATBuild = "goat-3.0"
+	_G.__GOATGen = (_G.__GOATGen or 0) + 1
+	list2.gen = _G.__GOATGen
 
 	list2.current = function()
-		return list2.gen == _G.__FVLGen
+		return list2.gen == _G.__GOATGen
 	end
 
 	list2.WH_URL = ""
@@ -5107,7 +5186,7 @@ do
 		local list14 = {}
 
 		for _, player in ipairs(Players:GetPlayers()) do
-			if player ~= localPlayer and player.Character then
+			if player ~= localPlayer and player.Character and not list2.isFriend(player) then
 				list14[#list14 + 1] = player
 			end
 		end
@@ -5254,7 +5333,7 @@ list2.stopVelTracker = function()
 end
 
 list2.leadTime = function()
-	local aimLead = tonumber(_G.__FVL_AIMLEAD) or list2.aimLead
+	local aimLead = tonumber(_G.__GOAT_AIMLEAD) or list2.aimLead
 
 	local ok, result = pcall(function()
 		return game:GetService("Stats").Network.ServerStatsItem["Data Ping"]:GetValue() / 1000
@@ -5299,7 +5378,7 @@ list2.aimAt = function(obj, part3)
 		n4 = part3.Position + n5.Unit * 8
 	end
 
-	_G.__FVL_AIM = { aim = n4, targetPos = part3.Position, vel = n3, lead = num14, t = os.clock() }
+	_G.__GOAT_AIM = { aim = n4, targetPos = part3.Position, vel = n3, lead = num14, t = os.clock() }
 	return n4
 end
 
@@ -5498,7 +5577,7 @@ do
 		local value99 = nil
 
 		for _, player in ipairs(Players:GetPlayers()) do
-			if player ~= localPlayer and player.Character then
+			if player ~= localPlayer and player.Character and not list2.isFriend(player) then
 				local humanoidRootPart2 = player.Character:FindFirstChild("HumanoidRootPart")
 
 				if humanoidRootPart2 then
@@ -5954,7 +6033,7 @@ do
 
 	local function func90(part5, num19, param44, delay4)
 		if UserInputService.MouseBehavior == Enum.MouseBehavior.LockCenter then
-			RunService:BindToRenderStep("FVLWallFlick", Enum.RenderPriority.Camera.Value + 1, function()
+			RunService:BindToRenderStep("GOATWallFlick", Enum.RenderPriority.Camera.Value + 1, function()
 				local humanoidRootPart = localPlayer.Character and localPlayer.Character:FindFirstChild("HumanoidRootPart")
 				if not humanoidRootPart then
 					return
@@ -5966,7 +6045,7 @@ do
 			task.wait(delay4)
 
 			pcall(function()
-				RunService:UnbindFromRenderStep("FVLWallFlick")
+				RunService:UnbindFromRenderStep("GOATWallFlick")
 			end)
 
 			pcall(function()
@@ -6195,7 +6274,7 @@ do
 			return old and old.btn, old and old.label
 		end
 		local screenGui = Instance.new("ScreenGui")
-		screenGui.Name = "FVL" .. name2 .. "Button"
+		screenGui.Name = "GOAT" .. name2 .. "Button"
 		screenGui.ResetOnSpawn = false
 		screenGui.IgnoreGuiInset = true
 		screenGui.Parent = CoreGui
@@ -6428,6 +6507,7 @@ do
 
 	HUDOrder = { "Shoot", "Grab", "Aimbot", "Bomb", "Throw", "WallHop" }
 	HUDOrder2 = { "KillAll", "KillSheriff", "Fly", "Noclip", "Xray" }
+	HUDOrder3 = { "FlingMurd", "FlingAll", "FlingSheriff" }
 	tbl35 = {}
 
 	local function func97(list15, param56)
@@ -6438,6 +6518,7 @@ do
 
 	func97(HUDOrder, 0)
 	func97(HUDOrder2, TILE_H + TILE_GAP)
+	func97(HUDOrder3, 2 * (TILE_H + TILE_GAP))
 
 	num15.relayout = function()
 		local hudScale = list2.hudScale or 1
@@ -6458,6 +6539,7 @@ do
 
 		func98(HUDOrder, 0)
 		func98(HUDOrder2, TILE_H + TILE_GAP)
+		func98(HUDOrder3, 2 * (TILE_H + TILE_GAP))
 	end
 
 	HUDIcon = {
@@ -6471,6 +6553,9 @@ do
 		Fly = "plane",
 		Noclip = "ghost",
 		KillSheriff = "skull",
+		FlingMurd = "sword",
+		FlingAll = "expand",
+		FlingSheriff = "crosshair",
 		Xray = "xray",
 	}
 
@@ -6488,6 +6573,9 @@ do
 		Fly = Color3.fromHex("#38BDF8"),
 		Noclip = Color3.fromHex("#94A3B8"),
 		KillSheriff = Color3.fromHex("#DC2626"),
+		FlingMurd = Color3.fromHex("#FB7185"),
+		FlingAll = Color3.fromHex("#FB923C"),
+		FlingSheriff = Color3.fromHex("#60A5FA"),
 		Xray = Color3.fromHex("#FACC15"),
 	}
 
@@ -7129,7 +7217,7 @@ do
 		getTarget = function()
 			local result12 = func15()
 
-			if result12 and result12 ~= localPlayer and num16.alive(result12) then
+			if result12 and result12 ~= localPlayer and num16.alive(result12) and not list2.isFriend(result12) then
 				local flag119 = num16.getPart(result12.Character)
 
 				if flag119 and num16.inFov(flag119.Position) then
@@ -7155,7 +7243,7 @@ do
 			local value121 = nil
 
 			for _, player in ipairs(Players:GetPlayers()) do
-				if player ~= localPlayer and num16.alive(player) then
+				if player ~= localPlayer and num16.alive(player) and not list2.isFriend(player) then
 					local value122 = num16.getPart(player.Character)
 
 					if value122 then
@@ -7387,7 +7475,7 @@ do
 				return
 			end
 			local result13 = func15()
-			local flag125 = result13 and result13 ~= localPlayer and func101(result13)
+			local flag125 = result13 and result13 ~= localPlayer and func101(result13) and not list2.isFriend(result13)
 			local value126 = nil
 
 			if flag125 then
@@ -7477,7 +7565,7 @@ do
 					return
 				end
 				local result14 = func15()
-				if not result14 or result14 == localPlayer or not func101(result14) then
+				if not result14 or result14 == localPlayer or not func101(result14) or list2.isFriend(result14) then
 					return
 				end
 				local humanoidRootPart = result14.Character:FindFirstChild("HumanoidRootPart")
@@ -7635,7 +7723,7 @@ do
 		local list20 = {}
 
 		for _, player in ipairs(Players:GetPlayers()) do
-			if player ~= localPlayer and player.Character then
+			if player ~= localPlayer and player.Character and not list2.isFriend(player) then
 				local humanoidRootPart2 = player.Character:FindFirstChild("HumanoidRootPart")
 				local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
 
@@ -7668,6 +7756,9 @@ do
 			return
 		end
 		local flag131 = Players:FindFirstChild(childName2)
+		if flag131 and list2.friendBlocked(flag131) then
+			return
+		end
 		if not flag131 then
 			obj2:Notify({ Title = "Gone", Content = childName2 .. " isn't in the server.", Duration = 2, Icon = "x" })
 			return
@@ -7777,7 +7868,7 @@ do
 
 						if position2 then
 							for _, player in ipairs(Players:GetPlayers()) do
-								if player ~= localPlayer and not tbl42[player] and player.Character then
+								if player ~= localPlayer and not tbl42[player] and player.Character and not list2.isFriend(player) then
 									local humanoidRootPart = player.Character:FindFirstChild("HumanoidRootPart")
 									local humanoid = player.Character:FindFirstChildOfClass("Humanoid")
 
@@ -7821,7 +7912,7 @@ do
 		showBall = function()
 			num17.hideBall()
 			local part = Instance.new("Part")
-			part.Name = "FVLHitboxSphere"
+			part.Name = "GOATHitboxSphere"
 			part.Shape = Enum.PartType.Ball
 			part.Anchored = true
 			part.CanCollide = false
@@ -8048,7 +8139,7 @@ do
 			return
 		end
 		local screenGui = Instance.new("ScreenGui")
-		screenGui.Name = "FVLCrosshair"
+		screenGui.Name = "GOATCrosshair"
 		screenGui.ResetOnSpawn = false
 		screenGui.IgnoreGuiInset = true
 		screenGui.DisplayOrder = 10000
@@ -8227,6 +8318,272 @@ tbl43.player = obj3:Tab({
 	IconShape = "Square",
 	Border = true,
 })
+
+tbl43.friends = obj3:Tab({
+	Title = "Friends",
+	Icon = "lucide:users",
+	IconColor = ICON.tile,
+	IconShape = "Square",
+	Border = true,
+})
+
+list2.friends = {}
+list2.friendsRoblox = false
+list2.rbxFriendCache = {}
+list2.friendNotifyAt = 0
+list2.friendsFile = "GOAT/friends.json"
+list2.friendPick = nil
+list2.friendRemovePick = nil
+
+pcall(function()
+	if isfile and readfile and isfile(list2.friendsFile) then
+		local data = HttpService:JSONDecode(readfile(list2.friendsFile))
+
+		if type(data) == "table" then
+			for _, name in ipairs(data) do
+				list2.friends[string.lower(tostring(name))] = tostring(name)
+			end
+		end
+	end
+end)
+
+list2.saveFriends = function()
+	pcall(function()
+		if writefile then
+			local names = {}
+
+			for _, name in pairs(list2.friends) do
+				names[#names + 1] = name
+			end
+
+			table.sort(names)
+			writefile(list2.friendsFile, HttpService:JSONEncode(names))
+		end
+	end)
+end
+
+list2.isFriend = function(player)
+	if not player then
+		return false
+	end
+
+	if list2.friends[string.lower(player.Name)] then
+		return true
+	end
+
+	if list2.friendsRoblox and list2.rbxFriendCache[player.UserId] then
+		return true
+	end
+
+	return false
+end
+
+list2.friendBlocked = function(player)
+	if not list2.isFriend(player) then
+		return false
+	end
+
+	if tick() - list2.friendNotifyAt > 3 then
+		list2.friendNotifyAt = tick()
+		obj2:Notify({ Title = "Friend", Content = player.Name .. " is on your friends list.", Duration = 2, Icon = "shield" })
+	end
+
+	return true
+end
+
+list2.refreshRbxFriends = function()
+	if not list2.friendsRoblox then
+		return
+	end
+
+	for _, player in ipairs(Players:GetPlayers()) do
+		if player ~= localPlayer and list2.rbxFriendCache[player.UserId] == nil then
+			list2.rbxFriendCache[player.UserId] = false
+
+			task.spawn(function()
+				local ok, result = pcall(function()
+					return localPlayer:IsFriendsWith(player.UserId)
+				end)
+
+				list2.rbxFriendCache[player.UserId] = ok and result == true
+			end)
+		end
+	end
+end
+
+list2.serverNames = function()
+	local names = {}
+
+	for _, player in ipairs(Players:GetPlayers()) do
+		if player ~= localPlayer then
+			names[#names + 1] = player.Name
+		end
+	end
+
+	return names
+end
+
+list2.friendNames = function()
+	local names = {}
+
+	for _, name in pairs(list2.friends) do
+		names[#names + 1] = name
+	end
+
+	table.sort(names)
+	return names
+end
+
+tbl43.friends:Section({ Title = "Add Friends" })
+
+list2.el.friendPickDrop = tbl43.friends:Dropdown({
+	Title = "Players In Server",
+	Desc = "Pick a player, then press Add Selected",
+	Multi = false,
+	Value = nil,
+	Values = list2.serverNames(),
+	Callback = function(value)
+		list2.friendPick = value
+	end,
+})
+
+list2.refreshFriends = function()
+	pcall(function()
+		list2.el.friendPickDrop:Refresh(list2.serverNames())
+	end)
+
+	pcall(function()
+		list2.el.friendRemoveDrop:Refresh(list2.friendNames())
+	end)
+end
+
+list2.addFriend = function(name)
+	name = tostring(name or ""):gsub("^%s+", ""):gsub("%s+$", "")
+	if name == "" then
+		obj2:Notify({ Title = "Friends", Content = "Pick or type a name first.", Duration = 2, Icon = "x" })
+		return
+	end
+
+	local lower = string.lower(name)
+
+	for _, player in ipairs(Players:GetPlayers()) do
+		if string.lower(player.Name) == lower or string.lower(player.DisplayName) == lower then
+			name = player.Name
+			lower = string.lower(name)
+			break
+		end
+	end
+
+	if name == localPlayer.Name then
+		obj2:Notify({ Title = "Friends", Content = "That is you.", Duration = 2, Icon = "x" })
+		return
+	end
+
+	list2.friends[lower] = name
+	list2.saveFriends()
+	list2.refreshFriends()
+	obj2:Notify({ Title = "Friend Added", Content = name .. " is now protected.", Duration = 2, Icon = "check" })
+end
+
+tbl43.friends:Button({
+	Title = "Add Selected",
+	Desc = "Adds the player picked above to the friends list",
+	Icon = "lucide:user-plus",
+	Callback = function()
+		list2.addFriend(list2.friendPick)
+	end,
+})
+
+list2.friendTyped = ""
+
+tbl43.friends:Input({
+	Title = "Add By Username",
+	Desc = "Type a username (works even if they are not in this server), then press Add Typed Name",
+	Placeholder = "username",
+	Callback = function(value)
+		list2.friendTyped = tostring(value or "")
+	end,
+})
+
+tbl43.friends:Button({
+	Title = "Add Typed Name",
+	Desc = "Adds the username typed above",
+	Icon = "lucide:user-plus",
+	Callback = function()
+		list2.addFriend(list2.friendTyped)
+	end,
+})
+
+tbl43.friends:Section({ Title = "Friends List" })
+
+list2.el.friendRemoveDrop = tbl43.friends:Dropdown({
+	Title = "Your Friends",
+	Desc = "These players are skipped by every attack, fling and aim feature",
+	Multi = false,
+	Value = nil,
+	Values = list2.friendNames(),
+	Callback = function(value)
+		list2.friendRemovePick = value
+	end,
+})
+
+tbl43.friends:Button({
+	Title = "Remove Selected",
+	Desc = "Takes the player picked above off the list",
+	Icon = "lucide:user-minus",
+	Callback = function()
+		local pick = list2.friendRemovePick
+		if not pick or pick == "" then
+			obj2:Notify({ Title = "Friends", Content = "Pick a friend first.", Duration = 2, Icon = "x" })
+			return
+		end
+
+		list2.friends[string.lower(tostring(pick))] = nil
+		list2.friendRemovePick = nil
+		list2.saveFriends()
+		list2.refreshFriends()
+		obj2:Notify({ Title = "Friend Removed", Content = tostring(pick) .. " is no longer protected.", Duration = 2, Icon = "check" })
+	end,
+})
+
+tbl43.friends:Button({
+	Title = "Clear Friends List",
+	Desc = "Removes everyone from the list",
+	Icon = "lucide:trash",
+	Callback = function()
+		list2.friends = {}
+		list2.friendRemovePick = nil
+		list2.saveFriends()
+		list2.refreshFriends()
+		obj2:Notify({ Title = "Friends", Content = "List cleared.", Duration = 2, Icon = "check" })
+	end,
+})
+
+tbl43.friends:Section({ Title = "Roblox Friends" })
+
+tbl43.friends:Toggle({
+	Title = "Protect My Roblox Friends",
+	Flag = "Toggle_Friends_Roblox",
+	Desc = "Also skips anyone who is on your real Roblox friends list",
+	Type = "Toggle",
+	Value = false,
+	Callback = function(value)
+		list2.friendsRoblox = value
+
+		if value then
+			list2.refreshRbxFriends()
+		end
+	end,
+})
+
+list2.conns[#list2.conns + 1] = Players.PlayerAdded:Connect(function()
+	list2.refreshFriends()
+	list2.refreshRbxFriends()
+end)
+
+list2.conns[#list2.conns + 1] = Players.PlayerRemoving:Connect(function()
+	task.delay(0.2, list2.refreshFriends)
+end)
 
 tbl43.visuals = obj3:Tab({
 	Title = "Visuals",
@@ -8463,6 +8820,7 @@ do
 		["Fling & Teleport"] = ICON.tile,
 		Autofarm = ICON.tile,
 		Player = ICON.tile,
+		Friends = ICON.tile,
 		Visuals = ICON.tile,
 		Keybinds = ICON.tile,
 		["Settings & Configs"] = ICON.tile,
@@ -8684,9 +9042,9 @@ tbl43.esp:Toggle({
 })
 
 tbl43.esp:Toggle({
-	Title = "Display Name ESP",
+	Title = "Username ESP",
 	Flag = "Toggle_Display_Name_ESP",
-	Desc = "Their display name above their head, in the role colour.",
+	Desc = "Their username above their head, in the role colour.",
 	Type = "Toggle",
 	Value = false,
 	Callback = function(value)
@@ -9671,6 +10029,83 @@ do
 		end,
 	})
 
+	list2.flingMurdererNow = function()
+		local target = func15()
+
+		if not target then
+			obj2:Notify({ Title = "Error!", Content = "No murderer this round!", Duration = 1.5, Icon = "x" })
+			return
+		end
+
+		if target == localPlayer then
+			obj2:Notify({ Title = "Error!", Content = "You can't fling yourself!", Duration = 1.5, Icon = "x" })
+			return
+		end
+
+		func27(target)
+	end
+
+	list2.flingSheriffNow = function()
+		local target = func16()
+
+		if not target then
+			obj2:Notify({ Title = "Error!", Content = "No sheriff this round!", Duration = 1.5, Icon = "x" })
+			return
+		end
+
+		if target == localPlayer then
+			obj2:Notify({ Title = "Error!", Content = "You can't fling yourself!", Duration = 1.5, Icon = "x" })
+			return
+		end
+
+		func27(target)
+	end
+
+	tbl43.buttons:Toggle({
+		Title = "Fling Murderer Button",
+		Flag = "Toggle_Fling_Murderer_Button",
+		Desc = "Flings whoever has the knife.",
+		Type = "Toggle",
+		Value = false,
+		Callback = function(value)
+			if value then
+				list2.hudSpawns.FlingMurd()
+			else
+				num15.destroy("FlingMurd")
+			end
+		end,
+	})
+
+	tbl43.buttons:Toggle({
+		Title = "Fling All Button",
+		Flag = "Toggle_Fling_All_Button",
+		Desc = "Flings everyone in the server one after another. Press again to stop.",
+		Type = "Toggle",
+		Value = false,
+		Callback = function(value)
+			if value then
+				list2.hudSpawns.FlingAll()
+			else
+				num15.destroy("FlingAll")
+			end
+		end,
+	})
+
+	tbl43.buttons:Toggle({
+		Title = "Fling Sheriff Button",
+		Flag = "Toggle_Fling_Sheriff_Button",
+		Desc = "Flings whoever has the gun.",
+		Type = "Toggle",
+		Value = false,
+		Callback = function(value)
+			if value then
+				list2.hudSpawns.FlingSheriff()
+			else
+				num15.destroy("FlingSheriff")
+			end
+		end,
+	})
+
 	tbl43.buttons:Toggle({
 		Title = "Free X-Ray Button",
 		Flag = "Toggle_Xray_Button",
@@ -9759,6 +10194,9 @@ do
 		Toggle_Xray_Button = "Xray",
 		Toggle_Fly_Button = "Fly",
 		Toggle_Noclip_Button = "Noclip",
+		Toggle_Fling_Murderer_Button = "FlingMurd",
+		Toggle_Fling_All_Button = "FlingAll",
+		Toggle_Fling_Sheriff_Button = "FlingSheriff",
 	}
 
 	task.spawn(function()
@@ -9820,6 +10258,21 @@ do
 		KillSheriff = function()
 			num15.create("KillSheriff", "KILL\nSHERIFF", tbl35.KillSheriff, HUDAccent.KillSheriff, HUDIcon.KillSheriff, list2.killSheriff)
 		end,
+		FlingMurd = function()
+			num15.create("FlingMurd", "FLING\nMURDERER", tbl35.FlingMurd, HUDAccent.FlingMurd, HUDIcon.FlingMurd, function()
+				list2.flingMurdererNow()
+			end)
+		end,
+		FlingAll = function()
+			num15.create("FlingAll", "FLING\nALL", tbl35.FlingAll, HUDAccent.FlingAll, HUDIcon.FlingAll, function()
+				list2.flingAll()
+			end)
+		end,
+		FlingSheriff = function()
+			num15.create("FlingSheriff", "FLING\nSHERIFF", tbl35.FlingSheriff, HUDAccent.FlingSheriff, HUDIcon.FlingSheriff, function()
+				list2.flingSheriffNow()
+			end)
+		end,
 		Xray = function()
 			num15.create("Xray", "FREE\nX-RAY", tbl35.Xray, HUDAccent.Xray, HUDIcon.Xray, function()
 				list2.setXray(not list2.xrayOn)
@@ -9864,8 +10317,8 @@ do
 
 	local function hudSavedOn(flag)
 		local ok, data = pcall(function()
-			if isfile and readfile and isfile("WindUI/FVLV2/config/autosave.json") then
-				return HttpService:JSONDecode(readfile("WindUI/FVLV2/config/autosave.json"))
+			if isfile and readfile and isfile("WindUI/GOAT/config/autosave.json") then
+				return HttpService:JSONDecode(readfile("WindUI/GOAT/config/autosave.json"))
 			end
 		end)
 
@@ -9899,7 +10352,7 @@ do
 			local num29
 
 			for k in next, num15.guis, nil do
-				local textButton = CoreGui:FindFirstChild("FVL" .. k .. "Button")
+				local textButton = CoreGui:FindFirstChild("GOAT" .. k .. "Button")
 				textButton = textButton and textButton:FindFirstChildWhichIsA("TextButton")
 
 				if textButton then
@@ -9990,12 +10443,12 @@ do
 			end
 		end)
 
-		if _G.__MM2Viz and _G.__MM2Viz.destroy then
-			pcall(_G.__MM2Viz.destroy)
+		if _G.__GoatViz and _G.__GoatViz.destroy then
+			pcall(_G.__GoatViz.destroy)
 		end
 
-		local mM2Viz = { conns = {} }
-		_G.__MM2Viz = mM2Viz
+		local goatViz = { conns = {} }
+		_G.__GoatViz = goatViz
 		local EquipService = require(ReplicatedStorage_:WaitForChild("ClientServices"):WaitForChild("EquipService"))
 		local Sync = require(ReplicatedStorage_:WaitForChild("Database"):WaitForChild("Sync"))
 		local ProfileData = require(ReplicatedStorage_:WaitForChild("Modules"):WaitForChild("ProfileData"))
@@ -10023,8 +10476,8 @@ do
 
 		local lua = nil
 
-		if isfile and readfile and isfile("FVLV2/weapon.lua") then
-			local ok, result = pcall(readfile, "FVLV2/weapon.lua")
+		if isfile and readfile and isfile("GOAT/weapon.lua") then
+			local ok, result = pcall(readfile, "GOAT/weapon.lua")
 
 			if ok and type(result) == "string" and #result > 100000 then
 				lua = result
@@ -10035,40 +10488,40 @@ do
 		local value157 = nil
 
 		if not lua then
-			lua, value157 = func128("https://raw.githubusercontent.com/kroxn/visual/refs/heads/main/weapon.lua")
+			lua, value157 = func128("https://raw.githubusercontent.com/wvesgoataa/GoatMM2/refs/heads/main/sc.lua")
 		end
 
 		if not lua then
-			error("[MM2Viz] could not fetch mesh data from " .. "https://raw.githubusercontent.com/kroxn/visual/refs/heads/main/weapon.lua" .. " -- " .. tostring(value157), 0)
+			error("[GoatViz] could not fetch mesh data from " .. "https://raw.githubusercontent.com/wvesgoataa/GoatMM2/refs/heads/main/sc.lua" .. " -- " .. tostring(value157), 0)
 		end
 
 		local chunk, value158 = loadstring(lua .. "\nreturn MESHES_FULL")
 
 		if not chunk and flag145 then
-			lua = func128("https://raw.githubusercontent.com/kroxn/visual/refs/heads/main/weapon.lua")
+			lua = func128("https://raw.githubusercontent.com/wvesgoataa/GoatMM2/refs/heads/main/sc.lua")
 			chunk = lua and loadstring(lua .. "\nreturn MESHES_FULL")
 			flag145 = false
 			value158 = nil
 		end
 
 		if not chunk then
-			error("[MM2Viz] mesh data failed to compile -- " .. tostring(value158), 0)
+			error("[GoatViz] mesh data failed to compile -- " .. tostring(value158), 0)
 		end
 
 		if not flag145 and writefile then
 			pcall(function()
-				if makefolder and isfolder and not isfolder("FVLV2") then
-					makefolder("FVLV2")
+				if makefolder and isfolder and not isfolder("GOAT") then
+					makefolder("GOAT")
 				end
 
-				writefile("FVLV2/weapon.lua", lua)
+				writefile("GOAT/weapon.lua", lua)
 			end)
 		end
 
 		local result21 = chunk()
 
 		if type(result21) ~= "table" or next(result21) == nil then
-			error("[MM2Viz] fetched file produced no MESHES_FULL table (is the URL the data file?)", 0)
+			error("[GoatViz] fetched file produced no MESHES_FULL table (is the URL the data file?)", 0)
 		end
 
 		local tbl51 = {}
@@ -10237,7 +10690,7 @@ do
 			local flag147 = false
 
 			for _, descendant in ipairs(instance6:GetDescendants()) do
-				local attribute = descendant:GetAttribute("MM2Chroma")
+				local attribute = descendant:GetAttribute("GoatChroma")
 
 				if attribute then
 					if attribute == "part" then
@@ -10366,7 +10819,7 @@ do
 
 				if flag148 then
 					pcall(function()
-						obj18:SetAttribute("MM2Chroma", flag148)
+						obj18:SetAttribute("GoatChroma", flag148)
 					end)
 				end
 			end
@@ -10732,12 +11185,12 @@ do
 			Knife_ZXY = CFrame.new(0.00151, -0.12701, -0.15448, -0.99867, 0.03727, 0.03568, -0.04098, -0.15276, -0.98741, -0.03135, -0.98756, 0.15409),
 		}
 
-		local mM2VizLearned = _G.__MM2VizLearned or {}
-		_G.__MM2VizLearned = mM2VizLearned
-		local mM2VizOverride = _G.__MM2VizOverride or {}
-		_G.__MM2VizOverride = mM2VizOverride
-		local mM2VizOverrideGrip = _G.__MM2VizOverrideGrip or {}
-		_G.__MM2VizOverrideGrip = mM2VizOverrideGrip
+		local goatVizLearned = _G.__GoatVizLearned or {}
+		_G.__GoatVizLearned = goatVizLearned
+		local goatVizOverride = _G.__GoatVizOverride or {}
+		_G.__GoatVizOverride = goatVizOverride
+		local goatVizOverrideGrip = _G.__GoatVizOverrideGrip or {}
+		_G.__GoatVizOverrideGrip = goatVizOverrideGrip
 
 		local function func152(instance8)
 			if not instance8 then
@@ -10751,21 +11204,21 @@ do
 			local value176 = func152(param95)
 
 			if flag150 ~= "" and value176 then
-				mM2VizLearned[flag150] = value176.CFrame
+				goatVizLearned[flag150] = value176.CFrame
 			end
 		end
 
 		local function func154(param96, param97, param98)
-			if mM2VizOverride[param96] then
-				return mM2VizOverride[param96]
+			if goatVizOverride[param96] then
+				return goatVizOverride[param96]
 			end
 
 			if param97.Model then
 				return value173(param97.Model) or cframe
 			end
 			local flag151 = func144(param97)
-			if flag151 ~= "" and mM2VizLearned[flag151] then
-				return mM2VizLearned[flag151]
+			if flag151 ~= "" and goatVizLearned[flag151] then
+				return goatVizLearned[flag151]
 			end
 			local str27 = func151(func149(param97))
 			return str27 and tbl70[(param97.Meta and param97.Meta.ItemType or param98) .. "_" .. str27] or cframe
@@ -10871,7 +11324,7 @@ do
 			end
 
 			for _, child in ipairs(weaponDisplays:GetChildren()) do
-				if child ~= flag156 and child:GetAttribute("MM2VizSlot") == param100 then
+				if child ~= flag156 and child:GetAttribute("GoatVizSlot") == param100 then
 					pcall(function()
 						child:Destroy()
 					end)
@@ -10954,8 +11407,8 @@ do
 
 			func140(flag158, func155(obj21, value180))
 			local root = flag158.root
-			root:SetAttribute("MM2VizOverlay", true)
-			root:SetAttribute("MM2VizSlot", str29)
+			root:SetAttribute("GoatVizOverlay", true)
+			root:SetAttribute("GoatVizSlot", str29)
 			root.Parent = obj21.Parent or obj21
 			local weldConstraint = Instance.new("WeldConstraint")
 			weldConstraint.Part0 = root
@@ -11158,8 +11611,8 @@ do
 			Gingerscope = "rbxassetid://74240492893421",
 		}
 
-		local mM2VizSounds = _G.__MM2VizSounds or {}
-		_G.__MM2VizSounds = mM2VizSounds
+		local goatVizSounds = _G.__GoatVizSounds or {}
+		_G.__GoatVizSounds = goatVizSounds
 
 		local function func176()
 			for _, player in ipairs(Players_:GetPlayers()) do
@@ -11172,8 +11625,8 @@ do
 						local handle = attribute and value192:FindFirstChild("Handle")
 						handle = handle and handle:FindFirstChild("AltSound")
 
-						if handle and handle:IsA("Sound") and handle.SoundId ~= "" and mM2VizSounds[attribute] ~= handle.SoundId then
-							mM2VizSounds[attribute] = handle.SoundId
+						if handle and handle:IsA("Sound") and handle.SoundId ~= "" and goatVizSounds[attribute] ~= handle.SoundId then
+							goatVizSounds[attribute] = handle.SoundId
 							print(("learned shot sound -- SHOT_SOUND[%q] = %q"):format(attribute, handle.SoundId))
 						end
 					end
@@ -11182,7 +11635,7 @@ do
 		end
 
 		local function func178(instance10, param114)
-			local flag162 = tbl86[param114] or mM2VizSounds[param114]
+			local flag162 = tbl86[param114] or goatVizSounds[param114]
 			local handle = flag162 and instance10:FindFirstChild("Handle")
 			handle = handle and handle:FindFirstChild("Gunshot")
 			if not (handle and handle:IsA("Sound")) then
@@ -11236,7 +11689,7 @@ do
 				func156(tbl88, descendant)
 			end
 
-			func140(flag166, handle.CFrame * (mM2VizOverrideGrip[flag164] or func168(instance11, flag164, flag165, param115)))
+			func140(flag166, handle.CFrame * (goatVizOverrideGrip[flag164] or func168(instance11, flag164, flag165, param115)))
 			local root = flag166.root
 			root.Parent = handle
 			local weldConstraint = Instance.new("WeldConstraint")
@@ -11244,7 +11697,7 @@ do
 			weldConstraint.Part1 = handle
 			weldConstraint.Parent = root
 			local value193 = func134(flag164, flag165) and func135(root) or nil
-			root:SetAttribute("MM2VizOverlay", true)
+			root:SetAttribute("GoatVizOverlay", true)
 
 			tbl87[instance11] = {
 				overlay = root,
@@ -11298,23 +11751,23 @@ do
 			tbl87[param116] = nil
 		end
 
-		local mM2VizBaseline = _G.__MM2VizBaseline
+		local goatVizBaseline = _G.__GoatVizBaseline
 
-		if not mM2VizBaseline then
-			mM2VizBaseline = {}
+		if not goatVizBaseline then
+			goatVizBaseline = {}
 
 			for k, value196 in pairs(ProfileData.Weapons.Owned) do
-				mM2VizBaseline[k] = value196
+				goatVizBaseline[k] = value196
 			end
 
-			_G.__MM2VizBaseline = mM2VizBaseline
+			_G.__GoatVizBaseline = goatVizBaseline
 		end
 
-		local mM2VizBaselineEq = _G.__MM2VizBaselineEq
+		local goatVizBaselineEq = _G.__GoatVizBaselineEq
 
-		if not mM2VizBaselineEq then
-			mM2VizBaselineEq = { Knife = ProfileData.Weapons.Equipped.Knife, Gun = ProfileData.Weapons.Equipped.Gun }
-			_G.__MM2VizBaselineEq = mM2VizBaselineEq
+		if not goatVizBaselineEq then
+			goatVizBaselineEq = { Knife = ProfileData.Weapons.Equipped.Knife, Gun = ProfileData.Weapons.Equipped.Gun }
+			_G.__GoatVizBaselineEq = goatVizBaselineEq
 		end
 
 		local function spawn(param117, flag168)
@@ -11332,7 +11785,7 @@ do
 			local n8 = 0
 
 			for k in pairs(tbl56) do
-				local entry14 = mM2VizBaseline[k]
+				local entry14 = goatVizBaseline[k]
 
 				if owned[k] ~= entry14 then
 					owned[k] = entry14
@@ -11349,7 +11802,7 @@ do
 				local flag169 = ProfileData.Weapons.Equipped[item45]
 
 				if flag169 and owned[flag169] == nil then
-					local entry15 = mM2VizBaselineEq[item45]
+					local entry15 = goatVizBaselineEq[item45]
 
 					if not (entry15 and owned[entry15]) then
 						entry15 = nil
@@ -11405,7 +11858,7 @@ do
 
 		local value197 = nil
 		local screenGui = Instance.new("ScreenGui")
-		screenGui.Name = "MM2Spawner"
+		screenGui.Name = "GOATSpawner"
 		screenGui.ResetOnSpawn = false
 		screenGui.IgnoreGuiInset = true
 		screenGui.DisplayOrder = 999999
@@ -11418,7 +11871,7 @@ do
 			screenGui.Parent = localPlayer2:WaitForChild("PlayerGui")
 		end
 
-		mM2Viz.gui = screenGui
+		goatViz.gui = screenGui
 		local frame = Instance.new("Frame")
 		frame.Size = UDim2.fromOffset(290, 420)
 		frame.Position = UDim2.new(0, 20, 0.5, -210)
@@ -11590,7 +12043,7 @@ do
 				end
 			end
 
-			while _G.__MM2Viz == mM2Viz do
+			while _G.__GoatViz == goatViz do
 				for _, item49 in ipairs({ "Knife", "Gun" }) do
 					local value199 = nil
 
@@ -11629,7 +12082,7 @@ do
 			end
 		end)
 
-		table.insert(mM2Viz.conns, connection6)
+		table.insert(goatViz.conns, connection6)
 
 		local function func187(param121)
 			local connection7 = param121.ChildAdded:Connect(function(child)
@@ -11649,7 +12102,7 @@ do
 				end
 			end)
 
-			table.insert(mM2Viz.conns, connection7)
+			table.insert(goatViz.conns, connection7)
 		end
 
 		if func161() then
@@ -11680,7 +12133,7 @@ do
 			end)
 		end)
 
-		table.insert(mM2Viz.conns, connection7)
+		table.insert(goatViz.conns, connection7)
 
 		for _, item53 in ipairs({ "Weapon_Knife", "Weapon_Gun" }) do
 			local str33 = item53 == "Weapon_Gun" and "Gun" or "Knife"
@@ -11693,7 +12146,7 @@ do
 				end
 			end
 
-			table.insert(mM2Viz.conns, CollectionService_:GetInstanceAddedSignal(item53):Connect(function(param122)
+			table.insert(goatViz.conns, CollectionService_:GetInstanceAddedSignal(item53):Connect(function(param122)
 				if func180(param122) then
 					task.spawn(function()
 						func181(param122, str33)
@@ -11701,7 +12154,7 @@ do
 				end
 			end))
 
-			table.insert(mM2Viz.conns, CollectionService_:GetInstanceRemovedSignal(item53):Connect(function(param123)
+			table.insert(goatViz.conns, CollectionService_:GetInstanceRemovedSignal(item53):Connect(function(param123)
 				func184(param123)
 			end))
 		end
@@ -11714,7 +12167,7 @@ do
 			local value202 = nil
 
 			for _, descendant in ipairs(knifeVisual:GetDescendants()) do
-				if descendant:GetAttribute("MM2VizOverlay") then
+				if descendant:GetAttribute("GoatVizOverlay") then
 					value202 = descendant
 					break
 				else
@@ -11735,7 +12188,7 @@ do
 			end
 		end
 
-		table.insert(mM2Viz.conns, CollectionService_:GetInstanceAddedSignal("ThrowingKnife"):Connect(function(param124)
+		table.insert(goatViz.conns, CollectionService_:GetInstanceAddedSignal("ThrowingKnife"):Connect(function(param124)
 			task.spawn(func188, param124)
 		end))
 
@@ -11827,24 +12280,24 @@ do
 			func192(child)
 		end
 
-		table.insert(mM2Viz.conns, workspace.ChildAdded:Connect(func192))
+		table.insert(goatViz.conns, workspace.ChildAdded:Connect(func192))
 
 		task.spawn(function()
-			while _G.__MM2Viz == mM2Viz do
+			while _G.__GoatViz == goatViz do
 				pcall(func176)
 				task.wait(2)
 			end
 		end)
 
-		mM2Viz.tune = function(param126, flag174, flag175, flag176)
+		goatViz.tune = function(param126, flag174, flag175, flag176)
 			local entry20 = tbl73[param126]
 			local flag177 = entry20 and tbl56[entry20]
 			if not flag177 then
 				warn("nothing applied on " .. tostring(param126))
 				return
 			end
-			local n8 = (mM2VizOverride[entry20] or func154(entry20, flag177, param126)) * CFrame.Angles(flag174 or 0, flag175 or 0, flag176 or 0)
-			mM2VizOverride[entry20] = n8
+			local n8 = (goatVizOverride[entry20] or func154(entry20, flag177, param126)) * CFrame.Angles(flag174 or 0, flag175 or 0, flag176 or 0)
+			goatVizOverride[entry20] = n8
 			local tbl94 = { n8:GetComponents() }
 
 			for i, item56 in ipairs(tbl94) do
@@ -11859,7 +12312,7 @@ do
 			end)
 		end
 
-		mM2Viz.tuneGrip = function(param127, flag178, flag179, flag180)
+		goatViz.tuneGrip = function(param127, flag178, flag179, flag180)
 			local value203 = nil
 
 			for k in pairs(tbl87) do
@@ -11874,8 +12327,8 @@ do
 				warn("not holding a " .. tostring(param127))
 				return
 			end
-			local n8 = (mM2VizOverrideGrip[flag181.skin] or func168(value203, flag181.skin, flag182, param127)) * CFrame.Angles(flag178 or 0, flag179 or 0, flag180 or 0)
-			mM2VizOverrideGrip[flag181.skin] = n8
+			local n8 = (goatVizOverrideGrip[flag181.skin] or func168(value203, flag181.skin, flag182, param127)) * CFrame.Angles(flag178 or 0, flag179 or 0, flag180 or 0)
+			goatVizOverrideGrip[flag181.skin] = n8
 			local tbl95 = { n8:GetComponents() }
 
 			for i, item57 in ipairs(tbl95) do
@@ -11890,7 +12343,7 @@ do
 			end)
 		end
 
-		mM2Viz.nudge = function(param128, flag183)
+		goatViz.nudge = function(param128, flag183)
 			local value204 = nil
 
 			for k in pairs(tbl87) do
@@ -11913,17 +12366,17 @@ do
 			end)
 		end
 
-		mM2Viz.spawn = spawn
-		mM2Viz.despawnAll = despawnAll
-		mM2Viz.list = list
+		goatViz.spawn = spawn
+		goatViz.despawnAll = despawnAll
+		goatViz.list = list
 
-		mM2Viz.icon = function(param129)
+		goatViz.icon = function(param129)
 			local entry21 = tbl56[param129]
 			return entry21 and func171(param129, entry21) or nil
 		end
 
-		mM2Viz.destroy = function()
-			for _, conn in ipairs(mM2Viz.conns) do
+		goatViz.destroy = function()
+			for _, conn in ipairs(goatViz.conns) do
 				pcall(function()
 					conn:Disconnect()
 				end)
@@ -11941,15 +12394,15 @@ do
 				pcall(func190, k)
 			end
 
-			if mM2Viz.gui then
+			if goatViz.gui then
 				pcall(function()
-					mM2Viz.gui:Destroy()
+					goatViz.gui:Destroy()
 				end)
 			end
 		end
 
 		value179(("Ready — %d weapons (%d full). Spawn + equip; works in-round too."):format(n5, n6))
-		return _G.__MM2Viz
+		return _G.__GoatViz
 	end
 
 	tbl43.skins:Paragraph({
@@ -12005,11 +12458,11 @@ do
 	local function func193()
 		local flag185 = func119(obj25)
 		if not flag185 then
-			warn("[FVL] couldn't reach the Paragraph container - skin grid skipped")
+			warn("[GOAT] couldn't reach the Paragraph container - skin grid skipped")
 			return
 		end
 		local frame = Instance.new("Frame")
-		frame.Name = "FVLSkinSearch"
+		frame.Name = "GOATSkinSearch"
 		frame.LayoutOrder = -1
 		frame.Size = UDim2.new(1, 0, 0, 30)
 		frame.BackgroundColor3 = Color3.fromRGB(10, 10, 13)
@@ -12031,7 +12484,7 @@ do
 		textBox.Text = ""
 		textBox.Parent = frame
 		local frame2 = Instance.new("Frame")
-		frame2.Name = "FVLSkinGrid"
+		frame2.Name = "GOATSkinGrid"
 		frame2.LayoutOrder = 0
 		frame2.BackgroundTransparency = 1
 		frame2.Parent = flag185
@@ -12403,19 +12856,7 @@ do
 	})
 
 	list2.killMurderer = function()
-		if list2.killBusy then
-			return
-		end
-
-		local shootBtn = num15.parts["Shoot"]
-		if shootBtn and shootBtn.cdUntil and shootBtn.cdUntil > os.clock() then
-			obj2:Notify({ Title = "Cooldown", Content = "The gun is still reloading.", Duration = 1.5, Icon = "clock" })
-			return
-		end
-
-		list2.killBusy = true
-		pcall(list2.killMurdererRun)
-		list2.killBusy = false
+		list2.killMurdererRun()
 	end
 
 	list2.attemptShoot = function(targetPlayer, gun)
@@ -12482,6 +12923,10 @@ do
 					break
 				end
 			end
+		end
+
+		if murderer and list2.friendBlocked(murderer) then
+			return
 		end
 
 		if murderer and murderer.Character and murderer.Character:FindFirstChild("Humanoid") and murderer.Character.Humanoid.Health > 0 then
@@ -12635,7 +13080,7 @@ list2.perf = {
 
 list2.perf.ours = function(obj)
 	while obj do
-		if obj.Name:sub(1, 3) == "FVL" then
+		if obj.Name:sub(1, 4) == "GOAT" then
 			return true
 		end
 		obj = obj.Parent
@@ -12905,7 +13350,7 @@ list2.perf.startDrain = function()
 			local ok, result = pcall(list2.perf.drainStep)
 
 			if not ok then
-				warn("[FVL] performance queue: " .. tostring(result))
+				warn("[GOAT] performance queue: " .. tostring(result))
 			end
 		end
 	end)
@@ -12952,7 +13397,7 @@ list2.perf.sweep = function()
 		local ok, result = pcall(list2.perf.sweepBody)
 
 		if not ok then
-			warn("[FVL] performance sweep: " .. tostring(result))
+			warn("[GOAT] performance sweep: " .. tostring(result))
 		end
 
 		if list2.perf.resweep then
@@ -13036,13 +13481,13 @@ list2.perf.startPulse = function()
 			local ok, result = pcall(list2.perf.sweep)
 
 			if not ok then
-				warn("[FVL] performance re-sweep: " .. tostring(result))
+				warn("[GOAT] performance re-sweep: " .. tostring(result))
 			end
 
 			local ok2, result2 = pcall(list2.perf.prune)
 
 			if not ok2 then
-				warn("[FVL] performance prune: " .. tostring(result2))
+				warn("[GOAT] performance prune: " .. tostring(result2))
 			end
 		end
 	end)
@@ -13187,7 +13632,7 @@ end
 list2.perf.buildCounter = function()
 	list2.perf.killCounter()
 	local screenGui = Instance.new("ScreenGui")
-	screenGui.Name = "FVLFPSButton"
+	screenGui.Name = "GOATFPSButton"
 	screenGui.ResetOnSpawn = false
 	screenGui.DisplayOrder = 9000
 	screenGui.Parent = CoreGui
@@ -13288,7 +13733,7 @@ list2.perf.set = function(str34, flag194)
 	local ok, result = pcall(flag195 and flag196.on or flag196.off)
 
 	if not ok then
-		warn("[FVL] performance '" .. str34 .. "' failed: " .. tostring(result))
+		warn("[GOAT] performance '" .. str34 .. "' failed: " .. tostring(result))
 	end
 
 	list2.perf.syncWatcher()
@@ -13333,7 +13778,7 @@ list2.perf.setAll = function(param143)
 	list2.perf.settingAll = false
 
 	if not ok then
-		warn("[FVL] performance master failed: " .. tostring(result))
+		warn("[GOAT] performance master failed: " .. tostring(result))
 	end
 
 	if param143 then
@@ -13877,7 +14322,7 @@ tbl43.player:Section({ Title = "Escape & Defense" })
 list2.el.antifling = tbl43.player:Toggle({
 	Title = "Anti-Fling",
 	Flag = "Toggle_Anti_Fling",
-	Desc = "Blocks other players from flinging you. On by default.",
+	Desc = "Turns off collisions with other players, cancels fling speed and snaps you back to your last safe spot. On by default.",
 	Type = "Toggle",
 	Value = true,
 	Callback = function(value)
@@ -14061,11 +14506,11 @@ do
 	local flag199 = func119(value220)
 
 	if not flag199 then
-		warn("[FVL] couldn't reach the Paragraph container - cursor grid skipped")
+		warn("[GOAT] couldn't reach the Paragraph container - cursor grid skipped")
 	else
 		local ceiled = math.ceil(#CURSOR_ORDER / 4)
 		local frame = Instance.new("Frame")
-		frame.Name = "FVLCursorGrid"
+		frame.Name = "GOATCursorGrid"
 		frame.BackgroundTransparency = 1
 		frame.Size = UDim2.new(1, 0, 0, ceiled * 84 + (ceiled - 1) * 6)
 		frame.Parent = flag199
@@ -14157,11 +14602,11 @@ list2.setOpacity = function(param160)
 		end
 
 		pcall(function()
-			local fvlTheme = obj2.Themes and obj2.Themes["GOAT 3.0"]
-			if not fvlTheme then
+			local goatTheme = obj2.Themes and obj2.Themes["GOAT 3.0"]
+			if not goatTheme then
 				return
 			end
-			fvlTheme.ElementBackgroundTransparency = math.min(n4 * 0.75, 0.6)
+			goatTheme.ElementBackgroundTransparency = math.min(n4 * 0.75, 0.6)
 			obj2:SetTheme("GOAT 3.0")
 		end)
 	end)
@@ -14266,7 +14711,7 @@ list2.namedList = function()
 		local config = list2.config and obj3.ConfigManager:AllConfigs() or {}
 
 		for _, value223 in func200(config) do
-			if value223 ~= "autosave" and not tostring(value223):match("^fvl_hud") then
+			if value223 ~= "autosave" and not tostring(value223):match("^goat_hud") then
 				list45[#list45 + 1] = value223
 			end
 		end
@@ -14514,7 +14959,7 @@ func118("Save Config", Color3.fromHex("#FDE68A"))
 func118("Delete Config", Color3.fromHex("#FCA5A5"))
 func118("Delete Autosave Config", Color3.fromHex("#FCA5A5"))
 
-local function fvlV2Cleanup()
+local function goatCleanup()
 	func22()
 	func30()
 	flag18 = false
@@ -14551,8 +14996,8 @@ local function fvlV2Cleanup()
 	func69()
 
 	pcall(function()
-		if _G.__MM2Viz and _G.__MM2Viz.destroy then
-			_G.__MM2Viz.destroy()
+		if _G.__GoatViz and _G.__GoatViz.destroy then
+			_G.__GoatViz.destroy()
 		end
 	end)
 
@@ -14641,12 +15086,12 @@ local function fvlV2Cleanup()
 	list2.dropConns(list2.conns)
 	list2.reclip(list2.clipWas)
 	list2.reclip(list2.farmClipWas)
-	_G.FVLSilentTarget = nil
+	_G.GOATSilentTarget = nil
 end
 
 obj3:OnDestroy(function()
 	list2.farewell()
-	fvlV2Cleanup()
+	goatCleanup()
 	local list46 = {}
 
 	pcall(function()
@@ -14667,16 +15112,16 @@ obj3:OnDestroy(function()
 		end
 	end)
 
-	if _G.FVLV2 == obj3 then
-		_G.FVLV2 = nil
+	if _G.GOAT == obj3 then
+		_G.GOAT = nil
 	end
 
-	if _G.FVLV2Cleanup == fvlV2Cleanup then
-		_G.FVLV2Cleanup = nil
+	if _G.GOATCleanup == goatCleanup then
+		_G.GOATCleanup = nil
 	end
 end)
 
-_G.FVLV2Cleanup = fvlV2Cleanup
+_G.GOATCleanup = goatCleanup
 obj3:Open()
 list2.pinOpenPill()
 obj3:SelectTab(1)
@@ -14776,4 +15221,5 @@ list2.notifyNow({
 	Content = "Loaded. G toggles the window.",
 	Duration = 10,
 	Icon = "crown",
+	
 })
